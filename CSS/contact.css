@@ -1,0 +1,43 @@
+.form {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.input-box {
+    padding:8px;
+    font-size: 2rem;
+    width: 100%;
+}
+
+input {
+    width:25%;
+    padding: 5px;
+}
+
+#username,#mail
+{
+    margin-left: 75px; 
+}
+.none {
+    display: none;
+    color: red;
+    font-size: 0.5rem;
+}
+
+input[type=submit] {
+    width: 15%;
+    padding: 10px;
+    background-color:#bf9c5e;
+    border-radius: 10px;
+    border-color: #403634;
+    margin-top: 20px;
+    font-family: 'Qhairo', sans-serif;
+    font-size: 1rem;
+  }
+
+input[type=submit]:hover {
+    background-color:#b99352 ;
+    border-radius: 10px;
+    cursor: pointer;
+
+  }

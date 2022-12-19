@@ -1,0 +1,289 @@
+body {
+    margin: 0;
+    font-family: 'Qhairo', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.5;
+    color: #000;
+    text-align: left;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.top-bar  {
+width: 100%;
+padding-right: 15px;
+padding-left: 25px;
+display: flex;
+flex-wrap: wrap;
+background-color: #403634;
+color:#fff;
+align-items: center;
+position: sticky;
+top: 0px;
+z-index: 100;
+}
+
+.top-bar p:hover {
+    color: #b99352;
+    cursor: pointer;
+}
+
+.top-bar * {
+    margin: 5px;
+   
+}
+
+.cart {
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-left: auto;
+    background-color: #fff;
+    color: #000000;
+}
+.cart img{
+    width: 20px;
+    height: 18px;
+}
+
+.header {
+    padding-left: 2%;
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: #403634;
+    text-align: center;
+}
+
+
+
+.opening {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #EDF1FF;
+    flex-wrap: wrap;
+    position: relative;
+}
+.brands{
+    flex: 1;
+}
+.opening ul 
+{
+    list-style: none;
+    padding-left: 0px;
+    text-align: center;
+
+}
+.list-header {
+    background-color: #000;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+li 
+{
+    padding: 10px;
+}
+
+.slider 
+{
+    width: 100%;
+    flex: 4;
+    text-align: center;
+}
+
+#img {
+    width: 100%;
+}
+
+#next , #previous
+{
+    font-size: 1.5rem;
+   width: 25px;
+   height: 45px;
+    cursor:pointer;
+    padding: 5px;
+    position: absolute;
+    top: 50%;
+    background-color: #bf9c5e;
+    border-radius: 2px;
+    opacity: 0.5;
+}
+
+#next 
+{
+    left: 0;
+}
+
+#previous 
+{
+    right: 0;
+}
+
+#previous:hover
+{
+    opacity: 0.8;
+}
+#next:hover
+{
+    opacity: 0.8;
+}
+
+.ending 
+{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 4%;
+    margin-top: 25px;
+}
+
+.ending div {
+    width: 200px;
+    border:1px solid #EDF1FF;
+    padding: 20px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.top-brands {
+    margin-top: 25px;
+    padding: 50px;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    background-color: #b99352;
+}
+.top-brands2 {
+    margin-top: 25px;
+    padding: 50px;
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    background-color: #fff;
+}
+
+.back-to-top 
+{
+    text-decoration: none;
+    padding: 10px;
+    color: #000;
+    background: #bf9c5e;
+    position: fixed;
+    right: 50px;
+    top: 560px;
+    z-index: 11;
+    border-radius: 5px;
+    cursor:pointer;
+    opacity: 0.7;
+}
+
+.back-to-top:hover
+{
+    opacity: 1;
+}
+
+.categories {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    
+}
+.product {
+    width: 22%;
+    height: fit-content;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e4dede;   
+    margin-bottom: 20px;
+}
+.product p {
+    margin: 0px;
+}
+
+.product img {
+    height: 150px;
+    cursor: pointer;
+}
+
+.brands {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2%;
+    margin-right: 4%;
+    margin-top: 25px;
+}
+
+.brands img {
+    width: 150px;
+    height: 100px;
+}
+
+.brand {
+    width: 200px;
+    border:1px solid #EDF1FF;
+    padding: 20px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.brand:hover {
+    background-color: #bf9c5e;
+    cursor: pointer;
+}
+
+.add {
+    background-color:#bf9c5e ;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.add:hover {
+    background-color: #b99352;
+}
+
+
+.footer {
+    background-color: #403634;
+    padding: 20px;
+    color: #fff;
+    display: flex;
+ 
+}
+
+.footer div 
+{
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
+.footer ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.footer ul li:hover {
+    color: #b99352;
+    cursor: pointer;
+}
+
+
