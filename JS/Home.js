@@ -77,31 +77,16 @@ function hasCookie(name) {
 }
 
 let counter;
-if(hasCookie("counter"))
-    {
-      counter=parseInt(getCookie("counter"))
-      
-    }
-    else{
-      counter="0";
-      setCookie("counter",counter,1)
-    }
-document.getElementById("cart-counter").innerHTML = counter;
-let add = document.getElementsByClassName("add");
-for (let i = 0; i < add.length; i++) {
-  add[i].addEventListener("click", () => {
-      counter=parseInt(getCookie("counter"))
-      setCookie("counter",++counter,1)
-    document.getElementById("cart-counter").innerHTML = counter;
-  });
+if (hasCookie("counter")) {
+  counter = parseInt(getCookie("counter"));
+} else {
+  counter = "0";
+  setCookie("counter", counter, 1);
 }
-
-
+document.getElementById("cart-counter").innerHTML = counter;
 
 //filter
-
-var data = [];
-data[0] = [
+var data = [
   {
     desc: "Rolex",
     price: 1,
@@ -147,57 +132,51 @@ data[0] = [
     price: 1,
     src: "./images/Rolex/9.webp",
   },
-];
-
-data[1] = [
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 2,
     src: "./images/Vacheron/1.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 2,
     src: "./images/Vacheron/2.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 2,
     src: "./images/Vacheron/3.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 3,
     src: "./images/Vacheron/4.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 4,
     src: "./images/Vacheron/5.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 5,
     src: "./images/Vacheron/6.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 6,
     src: "./images/Vacheron/7.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 7,
     src: "./images/Vacheron/8.webp",
   },
   {
-    desc: "Vacheron Constantin",
+    desc: "Vacheron",
     price: 7,
     src: "./images/Vacheron/9.webp",
   },
-];
-
-data[2] = [
   {
     desc: "Omega",
     price: 3,
@@ -243,9 +222,6 @@ data[2] = [
     price: 99,
     src: "./images/Omega/9.png",
   },
-];
-
-data[3] = [
   {
     desc: "Tag Heuer",
     price: 3,
@@ -293,48 +269,109 @@ data[3] = [
   },
 ];
 
-let products = document.querySelectorAll(".product");
-function changeBrand(brand) {
-  for (let i = 0; i < products.length; i++) {
-    products[i].children[0].setAttribute("src", brand[i].src);
-    products[i].children[1].innerHTML = brand[i].desc;
-    products[i].children[2].innerHTML = `${brand[i].price} $`;
+// create products in categories div
+let categoriesDiv = document.querySelector(".categories");
+
+let productDiv, productImg, productDesc, productPrice;
+
+function createProductDiv(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    productDiv = document.createElement("div");
+    productImg = document.createElement("img");
+    productDesc = document.createElement("p");
+    productPrice = document.createElement("p");
+    productAdd = document.createElement("p");
+    productDiv.classList.add("product");
+    productImg.classList.add("product-img");
+    productDesc.classList.add("product-p");
+    productPrice.classList.add("product-p");
+    productAdd.classList.add("add");
+    productAdd.innerHTML = "+ Add to cart";
+    productAdd.addEventListener("click", function () {
+      counter = parseInt(getCookie("counter"));
+      setCookie("counter", ++counter, 1);
+      document.getElementById("cart-counter").innerHTML = counter;
+    });
+    productDiv.appendChild(productImg);
+    productDiv.appendChild(productDesc);
+    productDiv.appendChild(productPrice);
+    productDiv.appendChild(productAdd);
+    categoriesDiv.appendChild(productDiv);
   }
 }
 
-let brands = document.getElementsByClassName("brand");
+createProductDiv(data);
+changeBrand(data);
 
-let names = ["Rolex", "Vacheron", "Omega", "Tag Heuer"];
+//remove div product
+function removeProductDiv() {
+  while (categoriesDiv.hasChildNodes()) {
+    categoriesDiv.removeChild(categoriesDiv.lastChild);
+  }
+}
 
-for (let i = 0; i < brands.length; i++) {
-  brands[i].innerHTML = names[i];
-  brands[i].addEventListener("click", () => {
-    changeBrand(data[i]);
+function changeBrand(dataSet) {
+  for (let i = 0; i < dataSet.length; i++) {
+    categoriesDiv.children[i].children[0].setAttribute("src", dataSet[i].src);
+    categoriesDiv.children[i].children[1].innerHTML = dataSet[i].desc;
+    categoriesDiv.children[i].children[2].innerHTML = `${dataSet[i].price} $`;
+  }
+}
+
+document.getElementById("all").addEventListener("click", function () {
+  removeProductDiv();
+  createProductDiv(data);
+  changeBrand(data);
+});
+
+//get category names
+let categoryNames = [];
+for (let i = 0; i < data.length; i++) {
+  categoryNames.push(data[i].desc);
+}
+
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+categoryNames = categoryNames.filter(onlyUnique);
+
+//create buttons
+let brandsDiv = document.querySelector(".brands");
+function createButton(name, div) {
+  let btn = document.createElement("div");
+  btn.classList.add("brand");
+  div.appendChild(btn);
+  btn.innerHTML = name;
+  return btn;
+}
+
+for (let i = 0; i < categoryNames.length; i++) {
+  let brand = createButton(categoryNames[i], brandsDiv);
+  console.log(brand);
+  brand.addEventListener("click", () => {
+    let arr = data.filter((element) => {
+      return element.desc == categoryNames[i];
+    });
+    removeProductDiv();
+    createProductDiv(arr);
+    changeBrand(arr);
   });
 }
 
-
-//redirect to product page
-// for (let i = 0; i < products.length; i++) {
-//   products[i].children[0].addEventListener("click", () => {
-//     location.href = "./product.html";
-//   });
-// }
+//home about contact redirection
 
 let home = document.querySelectorAll(".home");
 let about = document.querySelectorAll(".about");
 let contact = document.querySelectorAll(".contact");
 
-//home about contact redirection
-
 function redirect(node, url) {
   for (let i = 0; i < node.length; i++) {
-    node[i].addEventListener("click", function() {
+    node[i].addEventListener("click", function () {
       location.href = url;
     });
   }
 }
 
-redirect(home,"./index.html");
-redirect(contact,"./contact.html");
-redirect(about,"./about.html");
+redirect(home, "./index.html");
+redirect(contact, "./contact.html");
+redirect(about, "./about.html");
